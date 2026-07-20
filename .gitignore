@@ -1,0 +1,33 @@
+# Secrets — ne jamais committer
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+venv/
+.venv/
+
+# Données, caches et bases locales (données d'exécution, pas du code)
+data/data_cache/
+data/_cache/
+data/*.db
+agent/memory_store/
+ml/model_store/
+
+# Logs
+logs/*.log
+logs/*.csv
+
+# Rapports générés par le dashboard
+dashboard/*.csv
+dashboard/report_*.html
+
+# Éditeurs / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

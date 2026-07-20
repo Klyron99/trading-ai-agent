@@ -1,0 +1,35 @@
+# Core
+python-dotenv>=1.0.0
+
+# Dashboard
+streamlit>=1.35.0
+pandas>=2.1.0
+numpy>=1.26.0
+
+# Données de marché
+yfinance>=0.2.36
+
+# Machine Learning
+scikit-learn>=1.4.0
+joblib>=1.3.0
+
+# Visualisation / rapport
+matplotlib>=3.8.0
+plotly>=5.18.0
+
+# Logs
+loguru>=0.7.0
+
+# Alpaca Paper Trading
+alpaca-py>=0.20.0
+
+# Tests
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Optionnel — déscommenter selon les besoins futurs
+# xgboost>=2.0.0       # support XGBoost dans l'agent ML
+# optuna>=3.5.0
+# psycopg2-binary>=2.9.9
+# transformers>=4.38.0
+# torch>=2.2.0

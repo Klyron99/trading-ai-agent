@@ -1,0 +1,33 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7B2FFF"/>
+      <stop offset="100%" stop-color="#00B4FF"/>
+    </linearGradient>
+    <linearGradient id="ng2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9B4FFF"/>
+      <stop offset="100%" stop-color="#00D4FF"/>
+    </linearGradient>
+    <clipPath id="nclip">
+      <polygon points="20,170 20,30 55,30 110,120 110,30 145,30 145,170 110,170 55,80 55,170"/>
+    </clipPath>
+  </defs>
+  <!-- N shape -->
+  <polygon points="20,170 20,30 55,30 115,125 115,30 150,30 150,170 115,170 55,75 55,170"
+           fill="url(#ng)"/>
+  <!-- Candlesticks overlay inside N -->
+  <g clip-path="url(#nclip)" opacity="0.35">
+    <rect x="30" y="90" width="6" height="40" fill="white"/>
+    <rect x="33" y="75" width="2" height="15" fill="white"/>
+    <rect x="33" y="130" width="2" height="12" fill="white"/>
+    <rect x="44" y="70" width="6" height="55" fill="white"/>
+    <rect x="47" y="58" width="2" height="12" fill="white"/>
+    <rect x="47" y="125" width="2" height="14" fill="white"/>
+    <rect x="120" y="80" width="6" height="35" fill="white"/>
+    <rect x="123" y="66" width="2" height="14" fill="white"/>
+    <rect x="123" y="115" width="2" height="12" fill="white"/>
+    <rect x="132" y="95" width="6" height="45" fill="white"/>
+    <rect x="135" y="82" width="2" height="13" fill="white"/>
+    <rect x="135" y="140" width="2" height="10" fill="white"/>
+  </g>
+</svg>

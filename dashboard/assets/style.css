@@ -1,0 +1,493 @@
+/* ---------------------------------------------------------------------------
+   NEXORA - Professional Trading Dashboard
+   Pure CSS/aesthetic layer - zero functional changes
+   --------------------------------------------------------------------------- */
+
+/* -- Google Fonts - Inter ---------------------------------------------------- */
+/* -- Design tokens ----------------------------------------------------------- */
+:root {
+    --bg:           #080c14;
+    --bg-2:         #0d1117;
+    --card:         #0f1724;
+    --card-hover:   #131d2e;
+    --border:       #1a2235;
+    --border-light: #202d42;
+    --text:         #e2e8f0;
+    --text-muted:   #64748b;
+    --text-dim:     #475569;
+
+    --green:        #10b981;
+    --green-dim:    rgba(16,185,129,0.12);
+    --red:          #f43f5e;
+    --red-dim:      rgba(244,63,94,0.12);
+    --blue:         #3b82f6;
+    --blue-dim:     rgba(59,130,246,0.12);
+    --orange:       #f59e0b;
+    --orange-dim:   rgba(245,158,11,0.12);
+
+    --purple:       #8b5cf6;
+    --purple-bright:#a78bfa;
+    --cyan:         #06b6d4;
+    --grad:         linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+    --grad-subtle:  linear-gradient(135deg, rgba(139,92,246,0.08) 0%, rgba(6,182,212,0.08) 100%);
+
+    --radius-sm:    6px;
+    --radius:       10px;
+    --radius-lg:    14px;
+    --shadow:       0 4px 16px rgba(0,0,0,0.5);
+    --transition:   0.18s cubic-bezier(0.4,0,0.2,1);
+
+    --font:         'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono:    'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+}
+
+/* -- Global reset ------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, [data-testid="stAppViewContainer"] {
+    font-family: var(--font) !important;
+    background: var(--bg) !important;
+    color: var(--text) !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* -- Scrollbar ---------------------------------------------------------------- */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* -- Streamlit shell ---------------------------------------------------------- */
+[data-testid="stAppViewContainer"] { background: var(--bg) !important; }
+[data-testid="stHeader"] { background: transparent !important; box-shadow: none !important; }
+[data-testid="stToolbar"],
+.stDeployButton,
+[data-testid="stSidebarCollapseButton"],
+[data-testid="stDecoration"] { display: none !important; }
+
+/* Main content padding */
+section.main > div.block-container {
+    padding: 28px 32px 48px !important;
+    max-width: 1400px !important;
+}
+
+/* -- Sidebar ------------------------------------------------------------------ */
+[data-testid="stSidebar"] {
+    background: var(--bg-2) !important;
+    border-right: 1px solid var(--border) !important;
+}
+[data-testid="stSidebar"] > div:first-child {
+    background: var(--bg-2) !important;
+    padding-top: 0 !important;
+}
+[data-testid="stSidebar"] * { font-family: var(--font) !important; }
+
+/* -- Sidebar logo ------------------------------------------------------------- */
+.sidebar-logo {
+    padding: 22px 18px 18px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 18px;
+    background: linear-gradient(180deg, rgba(139,92,246,0.04) 0%, transparent 100%);
+}
+.sidebar-logo .brand {
+    font-size: 20px;
+    font-weight: 900;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 3px;
+    line-height: 1;
+}
+.sidebar-logo .sub {
+    font-size: 9px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+/* -- Sidebar footer ----------------------------------------------------------- */
+.sidebar-footer {
+    position: fixed;
+    bottom: 0; left: 0;
+    width: 244px;
+    padding: 10px 18px;
+    background: var(--bg-2);
+    border-top: 1px solid var(--border);
+    font-size: 10px;
+    color: var(--text-dim);
+    line-height: 1.7;
+}
+
+/* -- Navigation radio --------------------------------------------------------- */
+[data-testid="stRadio"] > div { gap: 1px !important; }
+[data-testid="stRadio"] label {
+    border-radius: var(--radius-sm) !important;
+    padding: 9px 14px !important;
+    transition: background var(--transition), color var(--transition) !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: var(--text-muted) !important;
+    border-left: 3px solid transparent !important;
+    cursor: pointer !important;
+}
+[data-testid="stRadio"] label:hover {
+    background: rgba(255,255,255,0.04) !important;
+    color: var(--text) !important;
+}
+[data-testid="stRadio"] label[data-checked="true"] {
+    background: var(--grad-subtle) !important;
+    color: var(--text) !important;
+    border-left-color: var(--purple) !important;
+    font-weight: 600 !important;
+}
+
+/* -- Buttons ------------------------------------------------------------------ */
+.stButton > button {
+    font-family: var(--font) !important;
+    border-radius: var(--radius-sm) !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    letter-spacing: 0.2px !important;
+    transition: all var(--transition) !important;
+    border: 1px solid var(--border-light) !important;
+}
+.stButton > button:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: var(--shadow) !important;
+    opacity: 0.92 !important;
+}
+.stButton > button:active { transform: translateY(0) !important; }
+.stButton > button[kind="primary"] {
+    background: var(--grad) !important;
+    border: none !important;
+    color: #fff !important;
+}
+.stButton > button[kind="secondary"] {
+    background: rgba(255,255,255,0.04) !important;
+    color: var(--text) !important;
+}
+
+/* -- Selectbox ---------------------------------------------------------------- */
+[data-testid="stSelectbox"] > div > div,
+[data-testid="stMultiSelect"] > div > div {
+    background: var(--card) !important;
+    border: 1px solid var(--border-light) !important;
+    border-radius: var(--radius-sm) !important;
+    color: var(--text) !important;
+    font-family: var(--font) !important;
+    transition: border-color var(--transition) !important;
+}
+[data-testid="stSelectbox"] > div > div:focus-within,
+[data-testid="stMultiSelect"] > div > div:focus-within {
+    border-color: var(--purple) !important;
+    box-shadow: 0 0 0 2px rgba(139,92,246,0.15) !important;
+}
+
+/* -- Expander ----------------------------------------------------------------- */
+[data-testid="stExpander"] {
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    background: var(--card) !important;
+    overflow: hidden !important;
+    transition: border-color var(--transition) !important;
+}
+[data-testid="stExpander"]:hover { border-color: var(--border-light) !important; }
+[data-testid="stExpander"] summary {
+    color: var(--text) !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    padding: 12px 16px !important;
+    font-family: var(--font) !important;
+}
+
+/* -- Tabs --------------------------------------------------------------------- */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 2px !important;
+    background: transparent !important;
+    border-bottom: 1px solid var(--border) !important;
+    padding-bottom: 0 !important;
+}
+.stTabs [data-baseweb="tab"] {
+    color: var(--text-muted) !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.6px !important;
+    text-transform: uppercase !important;
+    padding: 8px 18px !important;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0 !important;
+    transition: all var(--transition) !important;
+    font-family: var(--font) !important;
+    background: transparent !important;
+}
+.stTabs [data-baseweb="tab"]:hover { color: var(--text) !important; }
+.stTabs [aria-selected="true"] {
+    color: var(--text) !important;
+    border-bottom: 2px solid var(--purple) !important;
+    background: rgba(139,92,246,0.07) !important;
+}
+
+/* -- Alerts ------------------------------------------------------------------- */
+[data-testid="stAlert"] {
+    border-radius: var(--radius) !important;
+    border-left-width: 3px !important;
+    font-family: var(--font) !important;
+    font-size: 13px !important;
+}
+
+/* -- Dataframe / tables ------------------------------------------------------- */
+[data-testid="stDataFrame"] {
+    border-radius: var(--radius) !important;
+    overflow: hidden !important;
+    border: 1px solid var(--border) !important;
+}
+.dataframe th {
+    background: var(--bg-2) !important;
+    color: var(--text-muted) !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    letter-spacing: 1.2px !important;
+    text-transform: uppercase !important;
+    font-family: var(--font) !important;
+    border-bottom: 1px solid var(--border-light) !important;
+    padding: 10px 14px !important;
+}
+.dataframe td {
+    font-size: 13px !important;
+    font-family: var(--font) !important;
+    color: var(--text) !important;
+    padding: 9px 14px !important;
+    border-bottom: 1px solid var(--border) !important;
+}
+.dataframe tr:hover td { background: rgba(255,255,255,0.025) !important; }
+.dataframe tr:last-child td { border-bottom: none !important; }
+
+/* -- Metric (st.metric) ------------------------------------------------------- */
+[data-testid="stMetricValue"] {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    font-family: var(--font) !important;
+    font-variant-numeric: tabular-nums !important;
+}
+[data-testid="stMetricLabel"] {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    color: var(--text-muted) !important;
+}
+[data-testid="stMetricDelta"] { font-size: 12px !important; font-weight: 500 !important; }
+
+/* -- Code blocks -------------------------------------------------------------- */
+[data-testid="stCode"], code, pre {
+    background: #0a0f1a !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius-sm) !important;
+    font-size: 12px !important;
+    font-family: var(--font-mono) !important;
+}
+
+/* -- Spinner ------------------------------------------------------------------ */
+[data-testid="stSpinner"] { color: var(--purple) !important; }
+
+/* -- Caption ------------------------------------------------------------------ */
+[data-testid="stCaptionContainer"] p, .stCaption {
+    font-size: 11px !important;
+    color: var(--text-dim) !important;
+    font-family: var(--font) !important;
+}
+
+/* -- HR dividers -------------------------------------------------------------- */
+hr { border: none !important; border-top: 1px solid var(--border) !important; margin: 16px 0 !important; }
+
+/* -- KPI cards ---------------------------------------------------------------- */
+.kpi-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 18px 22px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+.kpi-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--accent, var(--blue));
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    opacity: 0.8;
+}
+.kpi-card::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent, var(--blue)) 0%, transparent 60%);
+    opacity: 0.4;
+}
+.kpi-card:hover {
+    border-color: rgba(139,92,246,0.35);
+    background: var(--card-hover);
+    box-shadow: 0 6px 28px rgba(0,0,0,0.45), 0 0 0 1px rgba(139,92,246,0.1);
+}
+.kpi-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    font-family: var(--font);
+}
+.kpi-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    font-family: var(--font);
+    letter-spacing: -0.5px;
+}
+.kpi-delta { font-size: 12px; font-weight: 500; margin-top: 7px; font-family: var(--font); }
+.kpi-delta.positive { color: var(--green); }
+.kpi-delta.negative { color: var(--red); }
+.kpi-delta.neutral  { color: var(--text-muted); }
+
+/* -- Signal badge ------------------------------------------------------------- */
+.signal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-family: var(--font);
+}
+.signal-buy  { background: var(--green-dim); color: var(--green); border: 1px solid rgba(16,185,129,0.3); }
+.signal-sell { background: var(--red-dim);   color: var(--red);   border: 1px solid rgba(244,63,94,0.3); }
+.signal-hold { background: rgba(100,116,139,0.12); color: var(--text-muted); border: 1px solid rgba(100,116,139,0.25); }
+
+/* -- Section headers ---------------------------------------------------------- */
+.section-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    margin: 30px 0 18px;
+    font-family: var(--font);
+}
+
+/* -- Status dot --------------------------------------------------------------- */
+.status-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    margin-right: 7px;
+}
+.status-dot.live {
+    background: var(--green);
+    box-shadow: 0 0 0 3px rgba(16,185,129,0.2);
+    animation: pulse-green 2s infinite;
+}
+.status-dot.sim {
+    background: var(--orange);
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.2);
+    animation: pulse-orange 2s infinite;
+}
+@keyframes pulse-green {
+    0%, 100% { box-shadow: 0 0 0 2px rgba(16,185,129,0.2); }
+    50%       { box-shadow: 0 0 0 5px rgba(16,185,129,0.05); }
+}
+@keyframes pulse-orange {
+    0%, 100% { box-shadow: 0 0 0 2px rgba(245,158,11,0.2); }
+    50%       { box-shadow: 0 0 0 5px rgba(245,158,11,0.05); }
+}
+
+/* -- Agent top-bar ------------------------------------------------------------ */
+.agent-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 12px 22px;
+    margin-bottom: 24px;
+    font-family: var(--font);
+}
+.agent-topbar .status-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.4px;
+}
+.agent-topbar .status-pill.active  { background: var(--green-dim); color: var(--green); border: 1px solid rgba(16,185,129,0.25); }
+.agent-topbar .status-pill.stopped { background: var(--red-dim);   color: var(--red);   border: 1px solid rgba(244,63,94,0.25); }
+.agent-topbar .price-chip  { font-size: 15px; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+.agent-topbar .uptime      { font-size: 11px; color: var(--text-muted); }
+
+/* -- Number / text inputs ------------------------------------------------------ */
+[data-testid="stNumberInput"] input,
+[data-testid="stTextInput"] input,
+[data-testid="stTextArea"] textarea {
+    background: var(--card) !important;
+    border: 1px solid var(--border-light) !important;
+    border-radius: var(--radius-sm) !important;
+    color: var(--text) !important;
+    font-family: var(--font) !important;
+    font-size: 13px !important;
+}
+[data-testid="stNumberInput"] input:focus,
+[data-testid="stTextInput"] input:focus,
+[data-testid="stTextArea"] textarea:focus {
+    border-color: var(--purple) !important;
+    box-shadow: 0 0 0 2px rgba(139,92,246,0.15) !important;
+    outline: none !important;
+}
+
+/* -- Checkbox ----------------------------------------------------------------- */
+[data-testid="stCheckbox"] span { font-family: var(--font) !important; font-size: 13px !important; color: var(--text) !important; }
+
+/* -- Plotly transparent bg ---------------------------------------------------- */
+.js-plotly-plot .plotly, .js-plotly-plot .plotly .modebar { background: transparent !important; }
+
+/* -- Mobile ------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    [data-testid="stSidebar"] { display: none !important; }
+    [data-testid="stAppViewContainer"] > section:last-child { padding: 12px 14px !important; margin-left: 0 !important; }
+    .mobile-nav {
+        display: flex !important; position: fixed; bottom: 0; left: 0; right: 0;
+        background: var(--bg-2); border-top: 1px solid var(--border);
+        z-index: 9999; padding: 6px 0 8px; justify-content: space-around;
+    }
+    .mobile-nav a {
+        display: flex; flex-direction: column; align-items: center;
+        color: var(--text-muted); text-decoration: none;
+        font-size: 9px; font-weight: 600; letter-spacing: 0.5px; gap: 3px;
+        padding: 4px 8px; border-radius: var(--radius-sm); transition: color var(--transition);
+    }
+    .mobile-nav a.active, .mobile-nav a:hover { color: var(--purple); }
+    .mobile-nav .nav-icon { font-size: 18px; }
+    [data-testid="block-container"] { padding-bottom: 70px !important; }
+    [data-testid="stHorizontalBlock"] { flex-wrap: wrap !important; }
+    [data-testid="stHorizontalBlock"] > div { min-width: 140px !important; }
+    .kpi-value { font-size: 20px !important; }
+    .kpi-label { font-size: 9px !important; }
+    [data-testid="stPlotlyChart"] { height: 220px !important; }
+    h2 { font-size: 18px !important; }
+}
