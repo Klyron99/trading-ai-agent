@@ -219,9 +219,10 @@ def render(ticker: str = "BTC-USD", **kwargs):
 
     # -"?-"? Courbe d'évolution du capital -"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?-"?
     if portfolio_hist:
-        _section("-?volution du capital (snapshots réels)")
+        _section("Évolution du capital (snapshots réels)")
         df_port = pd.DataFrame(portfolio_hist)
-        df_port["ts"] = pd.to_datetime(df_port["ts"], format="mixed", utc=True).dt.tz_localize(None) + pd.Timedelta(hours=2)
+        df_port["ts"] = pd.to_datetime(df_port["ts"], errors="coerce", utc=True).dt.tz_localize(None) + pd.Timedelta(hours=2)
+        df_port = df_port.dropna(subset=["ts"]).reset_index(drop=True)
 
         final_v = float(df_port["total_value"].iloc[-1])
         gain_v  = final_v - INITIAL_CAPITAL
@@ -231,8 +232,11 @@ def render(ticker: str = "BTC-USD", **kwargs):
         # Gain relatif au capital initial — axe Y zoomé sur les vraies variations
         df_port["gain"] = df_port["total_value"] - INITIAL_CAPITAL
 
+        if df_port.empty:
+            st.info("Pas encore de snapshots valides pour ce ticker.")
         col_g, col_i = st.columns([3, 1])
         with col_g:
+          try:
             fig = go.Figure()
 
             # Zone remplie sous la courbe
@@ -324,6 +328,8 @@ def render(ticker: str = "BTC-USD", **kwargs):
                 hovermode="x unified",
             )
             st.plotly_chart(_layout(fig, height=380), use_container_width=True)
+          except Exception as _e:
+            st.error(f"Erreur graphique : {_e}")
         with col_i:
             st.markdown("<br>", unsafe_allow_html=True)
 
@@ -373,7 +379,8 @@ def render(ticker: str = "BTC-USD", **kwargs):
         return
 
     df = pd.DataFrame(decisions_raw)
-    df["ts"] = pd.to_datetime(df["ts"], format="mixed", utc=True).dt.tz_localize(None) + pd.Timedelta(hours=2)
+    df["ts"] = pd.to_datetime(df["ts"], errors="coerce", utc=True).dt.tz_localize(None) + pd.Timedelta(hours=2)
+    df = df.dropna(subset=["ts"]).reset_index(drop=True)
     df = df.sort_values("ts").reset_index(drop=True)
 
     total  = len(df)
@@ -417,6 +424,9 @@ def render(ticker: str = "BTC-USD", **kwargs):
     total_pnl  = sum(t["pnl_pct"] for t in trades)
 
     _section("Vue d'ensemble des décisions")
+    if df.empty:
+        st.info("Aucune décision valide à afficher.")
+        return
 
     @st.fragment(run_every=2)
     def _live_kpis():
